@@ -149,12 +149,12 @@ const futureDates = [
 const pastDates = [
   // one in the recent past...
   faker.date.past({ days: 60 }),
-  // ...and a few more father back.
+  // ...and a few more farther back.
   ...[...Array(4).keys()].map(_ => faker.date.past({ years: 2 })),
 ]
 // finally, we generate schedules with our dates.
 const schedules = [...futureDates, ...pastDates].map(date =>
-  generateSchedule(date)
+  generateSchedule(date),
 )
 
 VERBOSE_MODE &&
@@ -167,8 +167,8 @@ VERBOSE_MODE &&
         schedules,
       },
       null,
-      2
-    )
+      2,
+    ),
   )
 console.log(`
  | successfully wrote to ${testContentPath}:
