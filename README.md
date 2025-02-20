@@ -20,12 +20,14 @@ To do a content-generation dry-run, pass the `--pretend` flag (or just `-p` for 
 For example, `npm run generate -- -pv` will show you lots of generated data (`-v`), but not write anything to disk (`-p`).
 This command is particularly useful for getting quick feedback while writing new content-generation functionality.
 
-> Note: Test content is not tracked by version control, as the content generator should be sufficient for every developer to generate comparable content that meets the requirements of the UI.
+> [!NOTE]  
+> Test content is not tracked by version control, as the content generator should be sufficient for every developer to generate comparable content that meets the requirements of the UI.
 
 To start the development server with test content as data source, run `npm run start!`.
 This is the same a the above `run` command, but with a `!` appended.
 
-> Note: The `start`, `test`, and `build` scripts all interface with content and have test-content-focused counterparts,
+> [!NOTE]  
+> The `start`, `test`, and `build` scripts all interface with content and have test-content-focused counterparts,
 > which have the same command with an appended `!`. For example, to build a production bundle of the site with real
 > content, run `npm run build`; to build the site with _test_ content, run `npm run build!`.
 
@@ -41,7 +43,8 @@ $ npm run generate -- --instructors=3 --courses=4
 
 For a more succinct approach, the command `npm run generate -- -i 3 -c 4` invokes identical behavior.
 
-> Note: There is currently no control over schedule generation.
+> [!NOTE]  
+> There is currently no control over schedule generation.
 
 ### Prettier
 
@@ -166,12 +169,15 @@ This workflow should be followed when developing new features that involve data 
 
 1. Define feature and associated data alterations.
 2. Write tests (in `src/test/`) that will validate the desired data structure.
-   > Note: This test will fail (with both real and test content) as the content remains untouched at this point.
+
+> [!NOTE]  
+> This test will fail (with both real and test content) as the content remains untouched at this point.
+
 3. Add functionality to `src/test/content-generator.js` to create content with the desired structure, _i.e._, when `npm run generate` is executed.
 4. Test with newly generated test data (`npm run test!`).
 5. Build UI support for restructured test content.
 6. Modify real content to desired new structure.
-7. Verify / remediate UI.
+7. Validate / remediate UI.
 
 Adhering to this workflow means any developer can spin up a local instance of the application with realistic test data at any time.
 This provides a consistent way to test new features against a suite of content that satisfies the requirements of the UI, including edge cases.
