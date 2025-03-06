@@ -145,11 +145,11 @@ The same is true for the `path`. Here is a list of all new fields added at build
   - new fields: `path`, `full_name`
 - **courses**
   - new fields: `path`
-- **schdules**
+- **schedules**
   - new fields: `path`, `start_date`
 
 Additional fields whose values can be derived from the existing content should be added at this step.
-The goal is to reduce/eliminate redundancy, which help keep a clean code base. The benefit extends beyond the developer experience, though.
+The goal is to reduce/eliminate redundancy, which helps keep a clean code base. The benefit extends beyond the developer experience, though.
 We also want to minimize the effort required from content managers.
 To this end, most data massaging--especially computationally complex and reused derivations--should be done at this step.
 This way the site's pages can query the same data for free.
