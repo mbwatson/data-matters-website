@@ -9,22 +9,23 @@ function CourseTemplate({ data }) {
   const today = new Date()
   const scheduleBuckets = schedules.nodes.reduce(
     (buckets, schedule) => {
-      if (new Date(schedule.start_date) < today) {
-        return {
-          ...buckets,
-          past: [...buckets.past, schedule].sort(
-            (s, t) => new Date(s.start_date) - new Date(t.start_date)
-          ),
-        }
+      const isPast = new Date(schedule.start_date) < today
+      if (isPast) {
+        buckets.past.push(schedule)
+      } else {
+        buckets.future.push(schedule)
       }
-      return {
-        ...buckets,
-        future: [...buckets.future, schedule].sort(
-          (s, t) => new Date(s.start_date) - new Date(t.start_date)
-        ),
-      }
+      return buckets
     },
-    { past: [], future: [] }
+    { past: [], future: [] },
+  )
+
+  // sorting only once for each bucket
+  scheduleBuckets.past.sort(
+    (s, t) => new Date(s.start_date) - new Date(t.start_date),
+  )
+  scheduleBuckets.future.sort(
+    (s, t) => new Date(s.start_date) - new Date(t.start_date),
   )
 
   return (
