@@ -22,7 +22,6 @@ export const Layout = ({ children }) => {
           display: 'flex',
           flexDirection: 'column',
           position: 'relative',
-          fontFamily: 'sans-serif',
         }}
       >
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
