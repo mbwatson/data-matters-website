@@ -1,7 +1,12 @@
 const React = require('react')
+const { theme } = require('./src/styles/theme')
+const { CssVarsProvider } = require('@mui/joy/styles')
 const { Layout } = require('./src/components/layout')
 
-// wraps every page in ur Layout component
 exports.wrapPageElement = ({ element, props }) => {
-  return <Layout {...props}>{element}</Layout>
+  return (
+    <CssVarsProvider theme={theme}>
+      <Layout {...props}>{element}</Layout>
+    </CssVarsProvider>
+  )
 }
