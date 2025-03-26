@@ -10,6 +10,7 @@ import {
   BookmarkBorder,
   BookmarkAdded,
 } from '@mui/icons-material'
+import { Markdown } from './markdown'
 
 /**
  * A reusable card component that displays a title, subtitle, description, and optional image.
@@ -28,7 +29,14 @@ const CustomCard = ({
   const [expanded, setExpanded] = useState(false)
 
   return (
-    <Card sx={{ width: 320, position: 'relative', margin: '1rem' }}>
+    <Card
+      sx={{
+        width: 420,
+        position: 'relative',
+        margin: '1rem',
+        minHeight: '20rem',
+      }}
+    >
       <div>
         <Typography
           level="title-lg"
@@ -79,24 +87,30 @@ const CustomCard = ({
           level="body-sm"
           sx={{
             position: 'relative',
-            maxHeight: expanded ? 'none' : '6rem', // Adjust height based on expansion
+            maxHeight: expanded ? 'none' : '10rem', // Adjust height based on expansion
             overflow: 'hidden',
+            pb: 4,
             maskImage: expanded
               ? 'none'
               : 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
             WebkitMaskImage: expanded
               ? 'none'
               : 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
-            transition: 'max-height 0.3s ease',
+            transition:
+              'max-height maskImage WebskitMaskImage overflow 0.3s ease',
           }}
         >
-          {description}
+          <Markdown>{description}</Markdown>
         </Typography>
 
         <IconButton
           onClick={() => setExpanded(prev => !prev)}
           size="sm"
-          sx={{ alignSelf: 'center', marginTop: '0.5rem' }}
+          sx={{
+            position: 'absolute',
+            bottom: '1rem',
+            alignSelf: 'center',
+          }}
         >
           {expanded ? <ExpandLess /> : <ExpandMore />}
         </IconButton>
