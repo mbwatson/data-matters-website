@@ -1,21 +1,46 @@
 import * as React from 'react'
+import { Box, Link as MUILink, Typography, Button } from '@mui/joy'
 import { Link } from '../link'
+
+const navLinks = [
+  { to: '/', label: 'Home' },
+  { to: '/courses', label: 'Course Catalog' },
+  { to: '/instructors', label: 'Instructors' },
+  { to: '/schedules', label: 'Schedules' },
+]
 
 const Header = ({ siteTitle }) => (
   <header
     style={{
-      display: 'flex',
-      gap: '1rem',
       position: 'sticky',
       top: 0,
       backgroundColor: '#fff',
       borderBottom: '1px solid #333',
+      zIndex: 1000,
     }}
   >
-    <Link to="/">{siteTitle}</Link>
-    <Link to="/courses">Course Catalog</Link>
-    <Link to="/instructors">Instructors</Link>
-    <Link to="/schedules">Schedules</Link>
+    <Box
+      sx={{
+        display: 'flex',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        p: 2,
+        maxWidth: '1200px',
+        margin: '0 auto',
+      }}
+    >
+      <Typography variant="h6">
+        <Link to="/">{siteTitle}</Link>
+      </Typography>
+
+      <Box sx={{ display: 'flex', gap: 2 }}>
+        {navLinks.map(({ to, label }) => (
+          <MUILink key={to} component={Link} to={to} underline="none">
+            <Button variant="plain">{label}</Button>
+          </MUILink>
+        ))}
+      </Box>
+    </Box>
   </header>
 )
 
