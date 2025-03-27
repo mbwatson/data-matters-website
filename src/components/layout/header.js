@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Box, Link as MUILink, Typography, Button } from '@mui/joy'
+import { Box, Link as Typography, Button } from '@mui/joy'
 import { Link } from '../link'
 
 const navLinks = [
@@ -35,9 +35,9 @@ const Header = ({ siteTitle }) => (
 
       <Box sx={{ display: 'flex', gap: 2 }}>
         {navLinks.map(({ to, label }) => (
-          <MUILink key={to} component={Link} to={to} underline="none">
+          <Link key={label} to={to} underline="none">
             <Button variant="plain">{label}</Button>
-          </MUILink>
+          </Link>
         ))}
       </Box>
     </Box>
