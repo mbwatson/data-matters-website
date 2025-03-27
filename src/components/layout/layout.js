@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
 
 import Header from './header'
+import { Container } from './container'
 
 export const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -25,7 +26,9 @@ export const Layout = ({ children }) => {
         }}
       >
         <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-        <main style={{ flex: 1 }}>{children}</main>
+        <Container>
+          <main style={{ flex: 1 }}>{children}</main>
+        </Container>
         <footer>© {new Date().getFullYear()}</footer>
       </div>
     </Fragment>
