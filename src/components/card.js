@@ -94,25 +94,32 @@ const CustomCard = ({
           minHeight: '10rem',
         }}
       >
-        <Typography
-          level="body-sm"
-          sx={{
-            position: 'relative',
-            maxHeight: expanded ? 'none' : '10rem', // Adjust height based on expansion
+        <div
+          style={{
+            maxHeight: expanded ? 'none' : '10rem',
             overflow: 'hidden',
-            pb: 4,
-            maskImage: expanded
-              ? 'none'
-              : 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
-            WebkitMaskImage: expanded
-              ? 'none'
-              : 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0))',
-            transition:
-              'max-height maskImage WebskitMaskImage overflow 0.3s ease',
+            transition: 'max-height 0.5s ease, padding 0.3s ease',
+            paddingBottom: expanded ? '2rem' : '0rem',
           }}
         >
-          <Markdown>{description}</Markdown>
-        </Typography>
+          <Typography
+            level="body-sm"
+            sx={{
+              position: 'relative',
+              maxHeight: expanded ? 'none' : '10rem',
+              overflow: 'hidden',
+              pb: 4,
+              maskImage: expanded
+                ? 'none'
+                : 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.1))',
+              WebkitMaskImage: expanded
+                ? 'none'
+                : 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.1))',
+            }}
+          >
+            <Markdown>{description}</Markdown>
+          </Typography>
+        </div>
 
         <IconButton
           onClick={() => setExpanded(prev => !prev)}
