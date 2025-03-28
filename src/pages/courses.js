@@ -43,9 +43,13 @@ const CoursesPage = ({ data }) => {
         {showOnlyBookmarked ? <VisibilityOffIcon /> : <VisibilityIcon />}
       </IconButton>
 
-      <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ justifyContent: 'space-around', flexGrow: 1 }}
+      >
         {filteredCourses.map(course => (
-          <Grid size={{ xs: 12, md: 6, lg: 4 }} key={`course-${course.id}`}>
+          <Grid size={{ xs: 12, sm: 6, md: 4 }} key={`course-${course.id}`}>
             <CustomCard
               id={course.id}
               title={course.title}

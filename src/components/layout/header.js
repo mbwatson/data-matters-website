@@ -25,7 +25,7 @@ const Header = ({ siteTitle }) => (
         justifyContent: 'space-between',
         alignItems: 'center',
         p: 2,
-        maxWidth: '1200px',
+        maxWidth: '1600px',
         margin: '0 auto',
       }}
     >

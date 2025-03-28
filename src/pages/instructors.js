@@ -39,7 +39,11 @@ const InstructorsPage = ({ data }) => {
         {showOnlyBookmarked ? <VisibilityOffIcon /> : <VisibilityIcon />}
       </IconButton>
 
-      <Grid container spacing={2} sx={{ flexGrow: 1 }}>
+      <Grid
+        container
+        spacing={2}
+        sx={{ flexGrow: 1, justifyContent: 'space-around' }}
+      >
         {filteredInstructors.map(instructor => (
           <Grid
             size={{ xs: 12, md: 6, lg: 4 }}

@@ -7,7 +7,7 @@ export const Container = ({ children }) => {
       sx={{
         display: 'flex',
         flexGrow: 1,
-        maxWidth: '1200px',
+        maxWidth: '1600px',
         width: '100%',
         margin: '0 auto',
         justifyContent: 'center',
