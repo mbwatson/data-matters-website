@@ -11,6 +11,7 @@ import {
   BookmarkAdded,
 } from '@mui/icons-material'
 import { Markdown } from './markdown'
+import { Box, Stack } from '@mui/joy'
 
 /**
  * A reusable card component that displays a title, subtitle, description, and optional image.
@@ -51,16 +52,26 @@ const CustomCard = ({
           {title}
         </Typography>
         {subtitle && <Typography level="body-sm">{subtitle}</Typography>}
-        <IconButton
-          aria-label="bookmark"
-          variant="plain"
-          color="neutral"
-          size="sm"
-          onClick={() => onBookmarkToggle(id)}
-          sx={{ position: 'absolute', top: '0.875rem', right: '0.5rem' }}
+        <Stack
+          sx={{
+            flexDirection: 'row',
+            position: 'absolute',
+            top: '0.875rem',
+            right: '0.5rem',
+            gap: 2,
+          }}
         >
-          {isBookmarked ? <BookmarkAdded /> : <BookmarkBorder />}
-        </IconButton>
+          {link && <Box sx={{ pt: 0.5 }}>{link}</Box>}
+          <IconButton
+            aria-label="bookmark"
+            variant="plain"
+            color="neutral"
+            size="sm"
+            onClick={() => onBookmarkToggle(id)}
+          >
+            {isBookmarked ? <BookmarkAdded /> : <BookmarkBorder />}
+          </IconButton>
+        </Stack>
       </div>
 
       {imageUrl && (
@@ -114,8 +125,6 @@ const CustomCard = ({
         >
           {expanded ? <ExpandLess /> : <ExpandMore />}
         </IconButton>
-
-        {link && <div>{link}</div>}
       </CardContent>
     </Card>
   )
