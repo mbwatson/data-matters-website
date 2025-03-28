@@ -29,14 +29,26 @@ const Header = ({ siteTitle }) => (
         margin: '0 auto',
       }}
     >
-      <Typography variant="h6">
+      <Typography level="h1">
         <Link to="/">{siteTitle}</Link>
       </Typography>
 
       <Box sx={{ display: 'flex', gap: 2 }}>
         {navLinks.map(({ to, label }) => (
           <Link key={label} to={to} underline="none">
-            <Button variant="plain">{label}</Button>
+            <Button
+              variant="plain"
+              color="neutral"
+              sx={{
+                transition: 'all 0.25s',
+                '&:hover': {
+                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                  backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                },
+              }}
+            >
+              {label}
+            </Button>
           </Link>
         ))}
       </Box>
