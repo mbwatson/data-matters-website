@@ -4,7 +4,7 @@ import Seo from '../components/seo'
 import { Details } from '../components/details'
 import { Link } from '../components/link'
 import CustomCard from '../components/card'
-import { IconButton, Grid } from '@mui/joy/'
+import { IconButton } from '@mui/joy/'
 import { FilterList, FilterListOff } from '@mui/icons-material'
 import { toggleBookmark } from '../util/toggleBookmark'
 
@@ -50,35 +50,18 @@ const InstructorsPage = ({ data }) => {
         {showOnlyBookmarked ? <FilterListOff /> : <FilterList />}
       </IconButton>
 
-      <Grid
-        container
-        spacing={2}
-        sx={{
-          justifyContent:
-            bookmarkedIds.length < 3 && showOnlyBookmarked
-              ? 'flex-start'
-              : 'space-between',
-          flexGrow: 1,
-          p: 2,
-        }}
-      >
-        {filteredInstructors.map(instructor => (
-          <Grid
-            size={{ xs: 12, md: 6, lg: 4 }}
-            key={`instructor-${instructor.id}`}
-          >
-            <CustomCard
-              id={instructor.id}
-              title={instructor.full_name}
-              subtitle={instructor.affiliation}
-              description={instructor.bio}
-              link={<Link to={instructor.url} />}
-              isBookmarked={bookmarkedIds.includes(instructor.id)}
-              onBookmarkToggle={handleBookmarkToggle}
-            />
-          </Grid>
-        ))}
-      </Grid>
+      {filteredInstructors.map(instructor => (
+        <CustomCard
+          id={instructor.id}
+          title={instructor.full_name}
+          subtitle={instructor.affiliation}
+          description={instructor.bio}
+          link={<Link to={instructor.url} />}
+          // imageUrl={instructor.image}
+          isBookmarked={bookmarkedIds.includes(instructor.id)}
+          onBookmarkToggle={handleBookmarkToggle}
+        />
+      ))}
 
       <Details title="data" data={data} />
     </Fragment>

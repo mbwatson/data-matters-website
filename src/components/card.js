@@ -1,9 +1,13 @@
 import React, { useState } from 'react'
-import AspectRatio from '@mui/joy/AspectRatio'
-import Card from '@mui/joy/Card'
-import CardContent from '@mui/joy/CardContent'
-import IconButton from '@mui/joy/IconButton'
-import Typography from '@mui/joy/Typography'
+import {
+  AspectRatio,
+  Card,
+  CardContent,
+  IconButton,
+  Typography,
+  Box,
+  Stack,
+} from '@mui/joy'
 import {
   ExpandMore,
   ExpandLess,
@@ -11,7 +15,6 @@ import {
   BookmarkAdded,
 } from '@mui/icons-material'
 import { Markdown } from './markdown'
-import { Box, Stack } from '@mui/joy'
 
 /**
  * A reusable card component that displays a title, subtitle, description, and optional image.
@@ -32,12 +35,22 @@ const CustomCard = ({
   return (
     <Card
       sx={{
-        width: 420,
+        flexGrow: 1,
         position: 'relative',
         margin: '1rem',
         minHeight: '20rem',
       }}
     >
+      {imageUrl && (
+        <AspectRatio
+          minHeight="120px"
+          maxHeight="200px"
+          sx={{ marginTop: '0.5rem' }}
+        >
+          <img src={imageUrl} alt={title} loading="lazy" />
+        </AspectRatio>
+      )}
+
       <div>
         <Typography
           level="title-lg"
@@ -73,16 +86,6 @@ const CustomCard = ({
           </IconButton>
         </Stack>
       </div>
-
-      {imageUrl && (
-        <AspectRatio
-          minHeight="120px"
-          maxHeight="200px"
-          sx={{ marginTop: '0.5rem' }}
-        >
-          <img src={imageUrl} alt={title} loading="lazy" />
-        </AspectRatio>
-      )}
 
       <CardContent
         orientation="horizontal"
