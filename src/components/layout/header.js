@@ -9,51 +9,53 @@ const navLinks = [
   { to: '/schedules', label: 'Schedules' },
 ]
 
-const Header = ({ siteTitle }) => (
-  <header
-    style={{
-      position: 'sticky',
-      top: 0,
-      backgroundColor: '#fff',
-      borderBottom: '1px solid #333',
-      zIndex: 1000,
-    }}
-  >
-    <Box
-      sx={{
-        display: 'flex',
-        justifyContent: 'space-between',
-        alignItems: 'center',
-        p: 2,
-        maxWidth: '1600px',
-        margin: '0 auto',
+const Header = ({ siteTitle }) => {
+  return (
+    <header
+      style={{
+        position: 'sticky',
+        top: 0,
+        backgroundColor: '#fff',
+        borderBottom: '1px solid #333',
+        zIndex: 1000,
       }}
     >
-      <Typography level="h1">
-        <Link to="/">{siteTitle}</Link>
-      </Typography>
+      <Box
+        sx={{
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          p: 2,
+          maxWidth: '1600px',
+          margin: '0 auto',
+        }}
+      >
+        <Link to="/">
+          <Typography level="h1">{siteTitle}</Typography>
+        </Link>
 
-      <Box sx={{ display: 'flex', gap: 2 }}>
-        {navLinks.map(({ to, label }) => (
-          <Link key={label} to={to} underline="none">
-            <Button
-              variant="plain"
-              color="neutral"
-              sx={{
-                transition: 'all 0.25s',
-                '&:hover': {
-                  boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
-                  backgroundColor: 'rgba(0, 0, 0, 0.04)',
-                },
-              }}
-            >
-              {label}
-            </Button>
-          </Link>
-        ))}
+        <Box sx={{ display: 'flex', gap: 2 }}>
+          {navLinks.map(({ to, label }) => (
+            <Link key={label} to={to} underline="none">
+              <Button
+                variant="plain"
+                color="neutral"
+                sx={{
+                  transition: 'all 0.25s',
+                  '&:hover': {
+                    boxShadow: '0 4px 8px rgba(0, 0, 0, 0.2)',
+                    backgroundColor: 'rgba(0, 0, 0, 0.04)',
+                  },
+                }}
+              >
+                {label}
+              </Button>
+            </Link>
+          ))}
+        </Box>
       </Box>
-    </Box>
-  </header>
-)
+    </header>
+  )
+}
 
 export default Header

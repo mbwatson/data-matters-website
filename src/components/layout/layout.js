@@ -1,8 +1,7 @@
-import React, { Fragment } from 'react'
+import React from 'react'
 import { useStaticQuery, graphql } from 'gatsby'
-
 import Header from './header'
-import { Container } from './container'
+import { Box } from '@mui/joy'
 
 export const Layout = ({ children }) => {
   const data = useStaticQuery(graphql`
@@ -16,21 +15,27 @@ export const Layout = ({ children }) => {
   `)
 
   return (
-    <Fragment>
-      <div
-        style={{
-          minHeight: '100vh',
-          display: 'flex',
-          flexDirection: 'column',
+    <Box
+      sx={{
+        display: 'flex',
+        flexDirection: 'column',
+        minHeight: '100vh',
+        bgcolor: 'background.body',
+        color: 'text.primary',
+      }}
+    >
+      {/* Main content area */}
+      <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
+      <Box
+        component="main"
+        sx={{
+          flex: 1,
+          width: '100%',
           position: 'relative',
         }}
       >
-        <Header siteTitle={data.site.siteMetadata?.title || `Title`} />
-        <Container>
-          <main style={{ flex: 1 }}>{children}</main>
-        </Container>
-        <footer>© {new Date().getFullYear()}</footer>
-      </div>
-    </Fragment>
+        {children}
+      </Box>
+    </Box>
   )
 }
