@@ -3,7 +3,7 @@ slug: adel-alaeddini
 first_name: Adel
 last_name: Alaeddini
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: University of Texas, San Antonio
 bio: >
   Adel is an Associate Professor of Mechanical Engineering at the University of
@@ -25,7 +25,7 @@ slug: trent-buskirk
 first_name: Trent
 last_name: Buskirk
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: Bowling Green State University
 bio: >
   Trent D. Buskirk, PhD is the Novak Family Professor of Data Science at Bowling
@@ -43,7 +43,7 @@ slug: jason-carter
 first_name: Jason
 last_name: Carter
 url: https://example.com
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: Cisco
 bio: >
   Jason Carter is an IT Engineer with Cisco Systems. He develops machine learning
@@ -57,7 +57,7 @@ slug: jonathan-duggins
 first_name: Jonathan
 last_name: Duggins
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: NC State University
 bio: >
   Jonathan Duggins is an award winning Associate Teaching Professor and
@@ -73,7 +73,7 @@ slug: siobhan-day-grady
 first_name: Siobhan Day
 last_name: Grady
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: NC Central University
 bio: >
   Siobahn is the first woman computer science Ph.D. graduate from North Carolina
@@ -98,7 +98,7 @@ slug: yufeng-liu
 first_name: Yufeng
 last_name: Liu
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: University of North Carolina, Chapel Hill
 bio: >
   Yufeng Liu is currently a professor in the Department of Statistics and
@@ -120,7 +120,7 @@ slug: vanessa-miller
 first_name: Vanessa
 last_name: Miller
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: University of North Carolina, Chapel Hill
 bio: >
   Vanessa Miller is an epidemiologist with UNC’s Injury Prevention Research
@@ -139,7 +139,7 @@ slug: eric-monson
 first_name: Eric
 last_name: Monson
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: Duke University
 bio: >
   Eric Monson is a data visualization specialist with the Duke University
@@ -157,7 +157,7 @@ slug: santiago-olivella
 first_name: Santiago
 last_name: Olivella
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: University of North Carolina, Chapel Hill
 bio: >
   Santiago Olivella is an Associate Professor of Political Science. Prior to
@@ -180,7 +180,7 @@ slug: laura-tateosian
 first_name: Laura
 last_name: Tateosian
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: NC State University
 bio: >
   Laura Tateosian is a Research Assistant Professor in the Center for Geospatial
@@ -197,7 +197,7 @@ slug: bill-wheaton
 first_name: Bill
 last_name: Wheaton
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: null
 bio: >
   William D. Wheaton is a geographer and senior geospatial consultant with more
@@ -215,7 +215,7 @@ slug: angela-zoss
 first_name: Angela
 last_name: Zoss
 url: null
-profile_pic: ../images/example.png
+image: ../images/example.png
 affiliation: Duke University
 bio: >
   Angela Zoss is an Assessment & Data Visualization Analyst with the Duke
