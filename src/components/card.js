@@ -1,11 +1,13 @@
 import React, { useState } from 'react'
 import {
-  AspectRatio,
   Card,
   CardContent,
+  CardOverflow,
+  AspectRatio,
   IconButton,
   Typography,
   Box,
+  Divider,
   Stack,
 } from '@mui/joy'
 import {
@@ -13,129 +15,172 @@ import {
   ExpandLess,
   BookmarkBorder,
   BookmarkAdded,
+  School,
 } from '@mui/icons-material'
 import { Markdown } from './markdown'
+import { GatsbyImage, getImage } from 'gatsby-plugin-image'
 
 /**
- * A reusable card component that displays a title, subtitle, description, and optional image.
- * It includes bookmarking functionality, expandable content with a blur effect, and an external link button.
+ * A reusable card component that displays instructor information with improved layout and visual hierarchy.
+ * Features include bookmarking and expandable content.
  */
 const CustomCard = ({
   id,
   title,
   subtitle,
   description,
-  imageUrl,
+  profileImage,
   link,
   isBookmarked,
   onBookmarkToggle,
+  tags = [],
 }) => {
   const [expanded, setExpanded] = useState(false)
 
   return (
     <Card
+      variant="outlined"
       sx={{
-        flexGrow: 1,
-        position: 'relative',
-        margin: '1rem',
-        minHeight: '20rem',
+        width: '100%',
+        height: expanded ? 'auto' : '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        transition: 'all 0.3s ease',
+        '&:hover': {
+          boxShadow: 'md',
+          borderColor: 'primary.300',
+        },
+        borderRadius: 'md',
+        overflow: 'hidden',
+        bgcolor: 'background.surface',
       }}
     >
-      {imageUrl && (
-        <AspectRatio
-          minHeight="120px"
-          maxHeight="200px"
-          sx={{ marginTop: '0.5rem' }}
-        >
-          <img src={imageUrl} alt={title} loading="lazy" />
-        </AspectRatio>
-      )}
-
-      <div>
-        <Typography
-          level="title-lg"
-          sx={{
-            overflow: expanded ? 'visible' : 'hidden', // Full title when expanded
-            textOverflow: expanded ? 'unset' : 'ellipsis', // Remove ellipsis when expanded
-            whiteSpace: expanded ? 'normal' : 'nowrap', // Allow wrapping when expanded
-            minHeight: '2rem', // Ensures the title section has consistent height
-            pr: '2.5rem',
-          }}
-        >
-          {title}
-        </Typography>
-        {subtitle && <Typography level="body-sm">{subtitle}</Typography>}
-        <Stack
-          sx={{
-            flexDirection: 'row',
-            position: 'absolute',
-            top: '0.875rem',
-            right: '0.5rem',
-            gap: 2,
-          }}
-        >
-          {link && <Box sx={{ pt: 0.5 }}>{link}</Box>}
+      <CardOverflow>
+        <AspectRatio ratio="16/9" maxHeight={200}>
+          {profileImage ? (
+            <GatsbyImage
+              image={getImage(profileImage)}
+              alt={`${title} Profile`}
+              style={{ objectFit: 'cover' }}
+            />
+          ) : (
+            <Box
+              sx={{
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                bgcolor: 'primary.100',
+                color: 'primary.800',
+              }}
+            >
+              <School sx={{ fontSize: 60 }} />
+            </Box>
+          )}
           <IconButton
             aria-label="bookmark"
-            variant="plain"
-            color="neutral"
+            variant={isBookmarked ? 'solid' : 'soft'}
+            color={isBookmarked ? 'primary' : 'neutral'}
             size="sm"
-            onClick={() => onBookmarkToggle(id)}
+            onClick={e => {
+              e.stopPropagation()
+              onBookmarkToggle(id)
+            }}
+            sx={{
+              position: 'absolute',
+              top: '0.5rem',
+              right: '0.5rem',
+              zIndex: 2,
+              bgcolor: isBookmarked
+                ? 'primary.500'
+                : 'rgba(255, 255, 255, 0.8)',
+              '&:hover': {
+                bgcolor: isBookmarked
+                  ? 'primary.600'
+                  : 'rgba(255, 255, 255, 0.9)',
+              },
+            }}
           >
             {isBookmarked ? <BookmarkAdded /> : <BookmarkBorder />}
           </IconButton>
-        </Stack>
-      </div>
+        </AspectRatio>
+      </CardOverflow>
 
-      <CardContent
-        orientation="horizontal"
-        sx={{
-          display: 'flex',
-          flexDirection: 'column',
-          alignItems: 'flex-start',
-          justifyContent: 'space-between',
-          minHeight: '10rem',
-        }}
-      >
-        <div
-          style={{
-            maxHeight: expanded ? 'none' : '10rem',
-            overflow: 'hidden',
-            transition: 'max-height 0.5s ease, padding 0.3s ease',
-            paddingBottom: expanded ? '2rem' : '0rem',
-          }}
-        >
-          <Typography
-            level="body-sm"
+      <CardContent sx={{ p: 2, flexGrow: 1 }}>
+        <Typography level="title-lg" sx={{ mb: 0.5, color: 'text.primary' }}>
+          {title}
+        </Typography>
+
+        {subtitle && (
+          <Typography level="body-sm" sx={{ mb: 1.5, color: 'text.secondary' }}>
+            {subtitle}
+          </Typography>
+        )}
+
+        {tags.length > 0 && (
+          <Stack
+            direction="row"
+            spacing={1}
+            sx={{ mb: 1.5, flexWrap: 'wrap', gap: 0.5 }}
+          >
+            {tags.map((tag, index) => (
+              <Box
+                key={index}
+                sx={{
+                  px: 1,
+                  py: 0.5,
+                  borderRadius: 'sm',
+                  bgcolor: 'primary.100',
+                  color: 'primary.700',
+                  fontSize: 'xs',
+                }}
+              >
+                {tag}
+              </Box>
+            ))}
+          </Stack>
+        )}
+
+        <Divider sx={{ my: 1.5 }} />
+
+        <Box sx={{ position: 'relative', mb: 1 }}>
+          <Box
             sx={{
-              position: 'relative',
-              maxHeight: expanded ? 'none' : '10rem',
+              maxHeight: expanded ? 'none' : '120px',
               overflow: 'hidden',
-              pb: 4,
-              maskImage: expanded
-                ? 'none'
-                : 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.1))',
-              WebkitMaskImage: expanded
-                ? 'none'
-                : 'linear-gradient(to bottom, rgba(0,0,0,1), rgba(0,0,0,0.1))',
+              transition: 'max-height 0.5s ease',
             }}
           >
-            <Markdown>{description}</Markdown>
-          </Typography>
-        </div>
+            <Typography level="body-md" sx={{ mb: 2, color: 'text.primary' }}>
+              <Markdown>{description}</Markdown>
+            </Typography>
+          </Box>
+        </Box>
+      </CardContent>
+
+      <CardOverflow
+        sx={{
+          borderTop: '1px solid',
+          borderColor: 'divider',
+          display: 'flex',
+          justifyContent: 'space-between',
+          alignItems: 'center',
+          p: 1,
+          bgcolor: 'background.level1',
+        }}
+      >
+        {link && <Box sx={{ ml: 1 }}>{link}</Box>}
 
         <IconButton
           onClick={() => setExpanded(prev => !prev)}
           size="sm"
-          sx={{
-            position: 'absolute',
-            bottom: '1rem',
-            alignSelf: 'center',
-          }}
+          variant="soft"
+          color="neutral"
+          sx={{ ml: 'auto' }}
+          aria-label={expanded ? 'Show less' : 'Show more'}
         >
           {expanded ? <ExpandLess /> : <ExpandMore />}
         </IconButton>
-      </CardContent>
+      </CardOverflow>
     </Card>
   )
 }
